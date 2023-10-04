@@ -1,0 +1,337 @@
+/* ------------------- */
+/*  Custom properties  */
+/* ------------------- */
+
+:root {
+    font-size: 18px;
+
+    /* colors */
+    --clr-light-red: 0 100% 67%;
+    --clr-orange-yellow: 39 100% 56%;
+    --clr-green-teal: 166 100% 37%;
+    --clr-cobalt-blue: 234 85% 45%;
+
+    --clr-pale-blue: 221 100% 96%;
+    --clr-light-lavender: 241 100% 89%;
+    --clr-dark-gray-blue: 224 30% 27%;
+    
+    /* font-sizes */
+    --fs-900: clamp(5rem, 8vw + 1rem, 9.375rem);
+    --fs-800: 3.5rem;
+    --fs-700: 1.5rem;
+    --fs-600: 1rem;
+    --fs-500: 1rem;
+    --fs-400: 0.9375rem;
+    --fs-300: 1rem;
+    --fs-200: 0.875rem;
+
+    /* font-weights */
+    --fw-medium: 500;
+    --fw-bold: 700;
+    --fw-extra-bold: 800;
+    
+    /* font-families */
+    font-family: 'Hanken Grotesk', sans-serif;
+}
+
+@media (width >= 35em) {
+    :root {
+        --fs-800: 5rem;
+        --fs-700: 2.5rem;
+        --fs-600: 1.5rem;
+        --fs-500: 1.25rem;
+        --fs-400: 1rem;
+    }
+}
+
+/*-----------------*/
+/*      Reset      */
+/*-----------------*/
+
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Prevent font size inflation */
+html {
+  -moz-text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+}
+
+/* Remove default margin in favour of better control in authored CSS */
+body, h1, h2, h3, h4, p,
+figure, blockquote, dl, dd {
+  margin: 0;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul[role='list'],
+ol[role='list'] {
+  list-style: none;
+}
+
+/* Set core body defaults */
+body {
+  min-height: 100vh;
+  line-height: 1.5;
+}
+
+/* Set shorter line heights on headings and interactive elements */
+h1, h2, h3, h4,
+button, input, label {
+  line-height: 1.1;
+}
+
+/* Balance text wrapping on headings */
+h1, h2,
+h3, h4 {
+  text-wrap: balance;
+}
+
+/* Make images easier to work with */
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+/* Inherit fonts for inputs and buttons */
+input, button,
+textarea, select {
+  font: inherit;
+}
+
+/* remove animations for people who've turned them off */
+@media (prefers-reduced-motion: reduce) {  
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* ------------------- */
+/* Utility classes     */
+/* ------------------- */
+
+.flex {
+    display: flex;
+    gap: var(--gap, 1rem);
+}
+
+.flow > *:where(:not(:first-child)) {
+    margin-top: var(--flow-space, 1rem);
+}
+
+/* colors */
+
+.light-red {
+    color: hsl( var(--clr-light-red) );
+    background-color: hsl( var(--clr-light-red) / 0.1 );
+}
+
+.orange-yellow {
+    color: hsl( var(--clr-orange-yellow) );
+    background-color: hsl( var(--clr-orange-yellow) / 0.1 );
+}
+
+.green-teal {
+    color: hsl( var(--clr-green-teal) );
+    background-color: hsl( var(--clr-green-teal) / 0.1 );
+}
+
+.cobalt-blue {
+    color: hsl( var(--clr-cobalt-blue) );
+    background-color: hsl( var(--clr-cobalt-blue) / 0.1 );
+}
+
+/* typography */
+
+.fs-900 { font-size: var(--fs-900); }
+.fs-800 { font-size: var(--fs-800); }
+.fs-700 { font-size: var(--fs-700); }
+.fs-600 { font-size: var(--fs-600); }
+.fs-500 { font-size: var(--fs-500); }
+.fs-400 { font-size: var(--fs-400); }
+.fs-300 { font-size: var(--fs-300); }
+.fs-200 { font-size: var(--fs-200); }
+
+
+.fs-900,
+.fs-800,
+.fs-700,
+.fs-600 {
+    line-height: 1.1;
+}
+
+.fw-medium { font-weight: var(--fw-medium); }
+.fw-bold { font-weight: var(--fw-bold); }
+.fw-extra-bold { font-weight: var(--fw-extra-bold); }
+
+/*----------------*/
+
+ body {
+    display: grid;
+    align-content: start;
+    justify-items: stretch;
+}
+
+.result {
+    display: flex;
+    flex-direction: column;
+
+    &__header {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        text-align: center;
+        padding-block: 2rem;
+    
+        border-bottom-left-radius: 30px;
+        border-bottom-right-radius: 30px;
+    
+        background: 
+            linear-gradient(
+                hsl(252, 100%, 67%),
+                hsl(241, 81%, 54%)
+            );
+        
+        &-heading {
+            color: hsl(var(--clr-light-lavender));
+        }
+
+        &-subheading {
+            color: hsl( var(--clr-pale-blue) );
+        }
+
+        &-score {
+            align-self: center;
+        
+            display: grid;
+            place-content: center;
+        
+            padding-inline: 2rem;
+            aspect-ratio: 1;
+        
+            border-radius: 50%;
+            background: 
+                linear-gradient(
+                    hsla(256, 72%, 46%, 1),
+                    hsla(241, 72%, 46%, 0)
+                );
+        
+            color: hsl( var(--clr-pale-blue) );
+
+            & > p {
+                color: hsl( var(--clr-pale-blue) / 0.4 );
+            }
+        }
+
+        &-content {
+            align-self: center;
+            max-width: 30ch;
+            margin-inline: 1rem;
+            color: hsl(var(--clr-light-lavender));
+        }
+    }
+
+    &__summary {
+        display: flex;
+        flex-direction: column;
+        padding-inline: 1.5rem;
+        padding-bottom: 1.5rem;
+
+        &-heading {
+            align-self: flex-start;
+        }
+    }
+
+    &__button {
+        padding: 1rem;
+        border: 0;
+        border-radius: 50px;
+        color: hsl( var(--clr-pale-blue) );
+        background-color: hsl(224, 30%, 27%);
+
+        &:hover {
+            background: 
+                linear-gradient(
+                    hsl(252, 100%, 67%),
+                    hsl(241, 81%, 54%)
+                );
+        }
+    }
+}
+
+.list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 0;
+
+    &__item {
+        flex-basis: 13rem;
+        flex-grow: 1;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        gap: 1rem;
+        flex-wrap: wrap;
+        justify-items: center;
+    
+        padding: 1rem;
+        border-radius: 16px;
+
+        &-label {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        & > p {
+            color: hsl( var(--clr-dark-gray-blue) );
+
+            & > span {
+                color: hsl( var(--clr-dark-gray-blue) / 0.5 );
+            }
+        }
+    }
+}
+
+@media (width >= 45em) {
+    body {
+        align-content: center;
+
+        grid-template-columns: minmax(1rem, 1fr) minmax(0, 50rem) minmax(1rem, 1fr);
+    }
+
+    .result {
+        justify-self: stretch;
+        grid-column: 2 / 3;
+        flex-direction: row;
+
+        margin-block: 2rem;
+        border-radius: 30px;
+
+        box-shadow: 10px 10px 30px hsl( var(--clr-light-lavender) / 0.5 );
+
+        &__header {
+            flex-basis: 50%;
+    
+            border-top-left-radius: 30px;
+            border-top-right-radius: 30px;
+        }
+
+        &__summary {
+            flex-basis: 50%;
+            padding: 2rem;
+        }
+    }
+}
