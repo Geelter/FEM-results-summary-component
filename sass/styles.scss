@@ -217,7 +217,7 @@ textarea, select {
             display: grid;
             place-content: center;
         
-            padding-inline: 2rem;
+            padding-inline: 2.5rem;
             aspect-ratio: 1;
         
             border-radius: 50%;
@@ -327,6 +327,10 @@ textarea, select {
     
             border-top-left-radius: 30px;
             border-top-right-radius: 30px;
+
+            &-score {
+                padding-inline: 3.5rem;
+            }
         }
 
         &__summary {
